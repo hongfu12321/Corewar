@@ -6,17 +6,11 @@
 /*   By: mjacques <mjacques@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 20:44:22 by mjacques          #+#    #+#             */
-/*   Updated: 2018/09/16 03:35:02 by mjacques         ###   ########.fr       */
+/*   Updated: 2019/04/12 14:31:02 by mjacques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_asm.h"
-
-void	ft_error(char *str)
-{
-	ft_printf("%s\n", str);
-	exit(-1);
-}
 
 void	check_parameter(int i, char **line)
 {

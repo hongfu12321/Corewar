@@ -6,7 +6,7 @@
 /*   By: mjacques <mjacques@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 19:45:48 by mjacques          #+#    #+#             */
-/*   Updated: 2018/09/16 08:42:51 by mcarney          ###   ########.fr       */
+/*   Updated: 2019/04/12 14:19:24 by mjacques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <fcntl.h>
 # include <ncurses.h>
 
-# include "../../libftprintf/header/ft_printf.h"
-# include "../../libftprintf/libft/header/libft.h"
+# include "libft.h"
 # include "op.h"
 
 # define UINT unsigned int
@@ -127,7 +126,6 @@ int					ft_decode(t_process *p, UCHAR *arena);
 void				ft_param(int *param, UCHAR *arena, int pc, int size);
 int					ft_check_param(t_process *p, UCHAR op);
 void				ft_putarena(UINT param, t_vm *vm, int pc, t_process *pro);
-int					ft_return_error(char const *str);
 int					modify_pc(int pc);
 
 /*

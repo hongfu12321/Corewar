@@ -73,7 +73,7 @@ void				dump_flag(int ac, char **av, t_vm *vm, int *i)
 		*i += 1;
 	}
 	else
-		ft_return_error("Error: invalid dump parameter");
+		ft_error("Error: invalid dump parameter");
 }
 
 /*
@@ -87,7 +87,7 @@ void				n_flag(int ac, char **av, t_vm *vm, int *i)
 
 	if (*i + 1 < ac
 		&& !(ft_atoi(av[*i + 1]) <= MAX_PLAYERS && ft_atoi(av[*i + 1]) != 0))
-		ft_return_error("Error: invalid player number");
+		ft_error("Error: invalid player number");
 	else if (*i + 1 < ac && '0' < av[*i + 1][0]
 		&& *i + 2 < ac && (s = ft_strstr(av[*i + 2], ".cor"))
 		&& s != av[*i + 2] && !s[4])
@@ -96,7 +96,7 @@ void				n_flag(int ac, char **av, t_vm *vm, int *i)
 		*i += 2;
 	}
 	else
-		ft_return_error("Error: invalid parameters");
+		ft_error("Error: invalid parameters");
 }
 
 /*
@@ -118,7 +118,7 @@ void				parse_av(int ac, char **av, t_vm *vm)
 		else if (!ft_strcmp("-n", av[i]))
 			n_flag(ac, av, vm, &i);
 		else if (!((s = ft_strstr(av[i], ".cor")) && s != av[i] && !s[4]))
-			ft_return_error("Error: invalid parameters");
+			ft_error("Error: invalid parameters");
 	}
 	i = 0;
 	while (av[++i])
@@ -167,12 +167,12 @@ int					main(int ac, char **av)
 	if (ac == 1)
 	{
 		ft_putstr("./corewar [-v] [-dump nbr_cycles] [[-n number]");
-		ft_return_error(" champion1.cor]");
+		ft_error(" champion1.cor]");
 	}
 	i = -1;
 	defaults(&vm);
 	parse_av(ac, av, &vm);
-	(vm.nbrp < 1) ? ft_return_error("Not enough players.") : 0;
+	(vm.nbrp < 1) ? ft_error("Not enough players.") : 0;
 	intros(&vm);
 	while (++i < MAX_PLAYERS)
 		(vm.p[i].size) ? vm.winner = i : 0;

@@ -6,60 +6,47 @@
 #    By: mjacques <mjacques@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/21 18:11:36 by mjacques          #+#    #+#              #
-#    Updated: 2018/09/17 18:21:25 by mjacques         ###   ########.fr        #
+#    Updated: 2019/04/12 14:44:47 by mjacques         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC				= 	gcc
-RM				=	rm -rf
-NAME			=	asm
-FLAGS			=	-Wall -Wextra -Werror
-LIBFTPRINTF 	=	../libftprintf/lftprintf.a
-LIBFTPRINTFLINK	=	-L ../libftprintf/ -lftprintf
-HEADER			=	header/op.h\
-					header/ft_asm.h\
-					header/ft_struct.h\
-					../libftprintf/header/ft_printf.h\
-					../libftprintf/libft/header/libft.h
+CC				= gcc
+RM				= rm -f
+NAME			= asm
+CFLAGS			= -Wall -Wextra -Werror
 
-FILES 			=	srcs/ft_asm.c\
-					srcs/get_next_line.c\
-					srcs/ft_file_struct.c\
-					srcs/ft_print_op.c\
-					srcs/ft_print_op_helper.c\
-					srcs/ft_file_maker.c\
-					srcs/ft_line_size.c\
-					srcs/ft_error.c
+LIBFT           = ../libft/libft.a
 
-OBJECTS			=	$(FILES:.c=.o)
+INCLUDES		= -I includes\
+				  -I ../libft/includes
+
+BASE 			= ft_asm.c ft_file_struct.c ft_file_maker.c ft_line_size.c
+OP_CODE			= ft_print_op.c ft_print_op_helper.c
+ERROR			= ft_error.c
+
+FUNCTIONS		= $(BASE) $(ERROR) $(OP_CODE)
+FILES 			= $(addprefix srcs/, $(FUNCTIONS))
+OBJECTS			= $(FILES:.c=.o)
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(OBJECTS): $(FILES)
-	@echo -n 'Compiling asm...'
-	@$(CC) $(FLAGS) -g -c $(FILES) -I ./header
-	@mv *.o 	srcs/
+%.o: %.c
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-libftprintf: $(LIBFTPRINTF)
+$(LIBFT):
+	@make -C ../libft
 
-$(LIBFTPRINTF):
-	@make -C ../libftprintf
-
-$(NAME): $(LIBFTPRINTF) $(OBJECTS)
-	@$(CC) -o $(NAME) $(OBJECTS) $(LIBFTPRINTFLINK)
-	@echo "\t\t\033[32mDone!\033[0m"
-	@echo "\033[33mReady to make champs!\033[0m"
+$(NAME): $(LIBFT) $(OBJECTS)
+	@$(CC) -o $(NAME) $(CFLAGS) $(OBJECTS) $(LIBFT)
 
 clean:
-	@$(RM) $(OBJECTS) $(HEADER:.h=.h.gch)
-	@make clean -C ../libftprintf
+	@$(RM) $(OBJECTS)
+	@make clean -C ../libft
 
 fclean: clean
-	@echo -n 'Cleaning  asm...'
 	@$(RM) $(NAME)
-	@echo "\t\t\033[31mDone!\033[0m"
-	@make fclean -C ../libftprintf
+	@make fclean -C ../libft
 
 re: fclean all

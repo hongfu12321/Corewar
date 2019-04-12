@@ -6,15 +6,12 @@
 /*   By: mjacques <mjacques@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 22:30:13 by mjacques          #+#    #+#             */
-/*   Updated: 2018/08/24 20:21:01 by mjacques         ###   ########.fr       */
+/*   Updated: 2019/04/12 14:43:37 by mjacques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRUCT_H
 # define FT_STRUCT_H
-
-# define BUFF_SIZE 1
-# define FDS 8192
 
 typedef struct		s_op
 {
@@ -27,14 +24,6 @@ typedef struct		s_op
 	_Bool			is_coding_byte;
 	_Bool			truncation;
 }					t_op;
-
-typedef struct		s_gnl
-{
-	int				size;
-	char			buff[BUFF_SIZE + 1];
-	char			*pos;
-	char			*tmp;
-}					t_gnl;
 
 typedef struct		s_line
 {

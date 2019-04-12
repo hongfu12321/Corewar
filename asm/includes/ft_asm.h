@@ -6,7 +6,7 @@
 /*   By: mjacques <mjacques@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 18:14:59 by mjacques          #+#    #+#             */
-/*   Updated: 2018/09/19 11:25:39 by mcarney          ###   ########.fr       */
+/*   Updated: 2019/04/12 14:31:26 by mjacques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 
 # include "op.h"
 # include "ft_struct.h"
-# include "../../libftprintf/header/ft_printf.h"
-# include "../../libftprintf/libft/header/libft.h"
+# include "libft.h"
 
 # include <fcntl.h>
 
 void	ft_putcharsize_fd(uint32_t x, int fd, size_t size);
 char	*ft_corextension(char *str);
 int		ft_isspace(char c);
-
-int		get_next_line(const int fd, char **line);
 
 /*
 ** ft_file_maker.c
@@ -72,7 +69,6 @@ char	*print_ind(t_line *tline, t_label *label, int file, int index);
 /*
 ** ft_error.c
 */
-void	ft_error(char *str);
 void	check_parameter(int i, char **line);
 void	ft_checkline(char **line);
 int		ft_command_line(char *str);

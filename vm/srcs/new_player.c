@@ -54,14 +54,14 @@ void				validate_p(char *file)
 	int				fd;
 
 	if (!file || ft_strcmp(file + ft_strlen(file) - 4, ".cor"))
-		ft_return_error("Error: file has an invalid header");
+		ft_error("Error: file has an invalid header");
 	if ((fd = open(file, O_RDONLY)) != -1)
 	{
 		if (lseek(fd, 0, SEEK_END) - sizeof(t_header) > CHAMP_MAX_SIZE)
-			ft_return_error("Error: file is too large");
+			ft_error("Error: file is too large");
 	}
 	else
-		ft_return_error("Error: can't read source file");
+		ft_error("Error: can't read source file");
 	close(fd);
 }
 
@@ -83,19 +83,19 @@ void				store_p(char *file, t_vm *vm, int nbr)
 		read(fd, &magic_number[1], 1);
 		read(fd, &magic_number[0], 1);
 		if (*(unsigned int *)magic_number != COREWAR_EXEC_MAGIC)
-			ft_return_error("Error: invalid magic_number");
+			ft_error("Error: invalid magic_number");
 		read(fd, &(vm->p[nbr].name), PROG_NAME_LENGTH + 4);
 		if (!(vm->p[nbr].name[0]))
-			ft_return_error("Error: Champ needs a name");
+			ft_error("Error: Champ needs a name");
 		lseek(fd, 4, SEEK_CUR);
 		read(fd, &(vm->p[nbr].comment), COMMENT_LENGTH + 4);
 		size = read(fd, &(vm->p[nbr].code), CHAMP_MAX_SIZE);
 		(size) ? vm->p[nbr].size = size :
-			ft_return_error("Error: invalid Champ size");
+			ft_error("Error: invalid Champ size");
 		vm->p[nbr].nbr = nbr + 1;
 	}
 	else
-		ft_return_error("Error: can't read source file");
+		ft_error("Error: can't read source file");
 	close(fd);
 }
 
@@ -110,9 +110,9 @@ void				new_pn(char **av, int i, t_vm *vm)
 
 	nbr = ft_atoi(av[i + 1]);
 	if (vm->p[nbr - 1].size)
-		ft_return_error("Error: -n player number already exists");
+		ft_error("Error: -n player number already exists");
 	validate_p(av[i + 2]);
-	(++vm->nbrp > MAX_PLAYERS) ? ft_return_error("Error: too many players") : 0;
+	(++vm->nbrp > MAX_PLAYERS) ? ft_error("Error: too many players") : 0;
 	store_p(av[i + 2], vm, nbr - 1);
 }
 
@@ -130,6 +130,6 @@ void				new_p(char **av, int i, t_vm *vm)
 	while (j < MAX_PLAYERS && vm->p[j].size)
 		j++;
 	validate_p(av[i]);
-	(++vm->nbrp > MAX_PLAYERS) ? ft_return_error("Error: too many players") : 0;
+	(++vm->nbrp > MAX_PLAYERS) ? ft_error("Error: too many players") : 0;
 	store_p(av[i], vm, j);
 }
