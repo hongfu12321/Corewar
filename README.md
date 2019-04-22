@@ -13,3 +13,8 @@ a virtual machine, an assembly language, and artificial intelligences.
 `malloc`, `free`, `open`, `read`, `lseek`, `write`.
 ## Keywords
 C language, team, virtual machine, parsing, A.I., software architecture, queues.
+
+## Authors
+* **Fu Hong** [hongfu12321](https://github.com/hongfu12321)
+* **Maxence Jacques de Dixmude** [maxencejded](https://github.com/maxencejded)
+* **Matt Carney** [mecarney](https://github.com/PurpleBooth)
