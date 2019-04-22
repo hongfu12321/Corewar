@@ -9,10 +9,19 @@ Corewar requires tremendous memory management skills (at the byte level), softwa
 ## Summary
 Developers create their own C-language software architecture, which includes
 a virtual machine, an assembly language, and artificial intelligences.
+
 ## Allowed functions
 `malloc`, `free`, `open`, `read`, `lseek`, `write`.
-## Keywords
-C language, team, virtual machine, parsing, A.I., software architecture, queues.
+
+## Screenshot
+input .s file then produce .cor file
+![asm](https://github.com/hongfu12321/corewar/blob/master/img/asm.png)
+
+Run ./corewar champion1.cor champoin2.cor to get the winner!!
+![vm](https://github.com/hongfu12321/corewar/blob/master/img/virtual_machine.png)
+
+Run ./corewar -v champion1.cor champoin2.cor to visulize the progress
+![visualization](https://github.com/hongfu12321/corewar/blob/master/img/visualization.png)
 
 ## Authors
 * **Fu Hong** [hongfu12321](https://github.com/hongfu12321)
