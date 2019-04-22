@@ -14,7 +14,7 @@ a virtual machine, an assembly language, and artificial intelligences.
 `malloc`, `free`, `open`, `read`, `lseek`, `write`.
 
 ## Screenshot
-input .s file then produce .cor file
+Input .s file will output .cor file
 ![asm](https://github.com/hongfu12321/corewar/blob/master/img/asm.png)
 
 Run ./corewar champion1.cor champoin2.cor to get the winner!!
